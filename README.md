@@ -1,4 +1,4 @@
-# LIPSTER
+# Kitchen
 
 ## __Design Idea__
 
