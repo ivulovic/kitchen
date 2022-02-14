@@ -65,7 +65,7 @@ Actions of other users are auto synced via websocket.
 - description: string
 - menu: Array [ MenuID ]
 
-### __menu__
+### __products__
 - id: UUID
 - storeId: StoreID
 - name: string

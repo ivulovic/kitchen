@@ -1,33 +1,36 @@
-import useKitchenWorker from 'app/workers/kitchen/useKitchenWorker';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { useInjectSaga } from 'utils/redux-injectors';
+import { KitchenScope } from './constants';
 import { Main } from './Main';
 import { Overview } from './Overview';
+import KitchenWorkerProvider from './providers/KitchenWorkerProvider';
+import saga from './saga';
 import { useKitchenSlice } from './slice';
 import './style.scss';
 
 export function KitchenPage() {
+  const { t } = useTranslation();
   let { url } = useRouteMatch();
   useKitchenSlice();
-  const [sendNotification] = useKitchenWorker();
+  useInjectSaga({ key: KitchenScope, saga });
+
   return (
-    <>
-      <Helmet>
-        <title>Kitchen</title>
-        <meta name="description" content="A Boilerplate application homepage" />
-      </Helmet>
-      <div className="kitchen">
-        <Switch>
-          <Route exact path={url} component={Main} />
-          <Route
-            path={`${url}/:restaurantId`}
-            render={p => (
-              <Overview {...p} sendNotification={sendNotification} />
-            )}
-          />
-        </Switch>
-      </div>
-    </>
+    <KitchenWorkerProvider>
+      <>
+        <Helmet>
+          <title>{t('home')}</title>
+        </Helmet>
+        <div className="kitchen">
+          <Switch>
+            <Route exact path={url} component={Main} />
+            <Route path={`${url}/:storeId`} component={Overview} />
+            <Route path={`${url}/:storeId`} component={Overview} />
+          </Switch>
+        </div>
+      </>
+    </KitchenWorkerProvider>
   );
 }

@@ -1,8 +1,153 @@
 .kitchen {
+    .orders,
+    .products{
+        .product-info{
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 250px auto;
+            min-height: 200px;
+            margin-top: 1rem;
+            .image{
+                background-size: cover;
+                background-position: center;
+                // border-radius: 0.4rem;
+            }
+            .product-details-wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .product-details{
+                    h2{
+                        font-weight: 400;
+                        color: var(--text-primary);
+                        margin-bottom: 1rem;
+                    }
+                    p{
+                        color: var(--text-primary);
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+    .products{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
     .orders{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
         .order-item {
-            .history{
-                opacity: 0.5;
+            padding: 1rem;
+            border-radius: 0.4rem;
+            // background: var(--shadow);
+            &.viewed {
+                background-color: var(--primary-light);
+            }
+            .order-item-header{
+                display: grid;
+                gap: 1rem;
+                h3{
+                    font-weight: 300;
+                }
+                .datetime-info{
+                    display: flex;
+                    justify-content: space-between;
+
+                    font-weight: 300;
+                    font-size: 0.85rem;
+                    color: var(--text-secondary);
+                }
+            }
+            .status-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                border: 1px solid var(--shadow);
+            }
+        }
+    }
+}
+
+.kitchen,
+#app-portals{
+    .flat-button{
+        padding: 0.75rem 0.5rem;
+        cursor: pointer;
+        border: none;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        background-color: white;
+        color: var(--text-primary);
+        min-width: 80px;
+        transition: 0.5s ease;
+        &:hover{
+            background: var(--primary-light);
+        }
+        &.active{
+            background-color: var(--primary-dark);
+            color: white;
+        }
+        &.danger{
+            background-color: var(--danger);
+            // color: white;
+        }
+    }
+}
+
+#app-portals{
+    .product-form{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 1rem;
+        gap: 2rem;
+        & > div > span{
+            margin-bottom: 0.5rem;
+            display: block;
+            &.error{
+                color: var(--secondary-dark);
+            }
+        }
+        .checkbox{
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+            cursor: pointer;
+            span{
+                font-weight: 300;
+            }
+        }
+        .quantity {
+            font-weight: 300;
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 1rem;
+            div{
+                display: grid;
+                gap: 0.5rem;
+            }
+            select{
+                padding: 0.5rem;
+                width: 100%;
+                border: 1px solid var(--shadow);
+                cursor: pointer;
+            }
+        }
+        .input {
+            display: grid;
+            grid-template-columns: auto;
+            gap: 1rem;
+            align-items: center;
+            label{
+                font-weight: 300;
+            }
+            input{
+                border: 1px solid var(--shadow);
+                padding: 0.5rem;
+                width: 100%;
             }
         }
     }

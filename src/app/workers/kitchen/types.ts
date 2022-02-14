@@ -1,5 +1,5 @@
-import { IMenuItemAddedNotification } from "app/pages/KitchenPage/types";
+import { IOrder } from 'app/pages/KitchenPage/types';
 
 export interface IKitchenWorkerHookProps {
-  onMessage?: (e: IMenuItemAddedNotification) => void;
+  onMessage?: (e: IOrder) => void;
 }

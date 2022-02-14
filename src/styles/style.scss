@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+
+}
+body{
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.025rem;
+}
+body,
+#root,
+.side-panel-layout {
+    min-height: 100vh;
+}
+:root {
+    --text-primary: rgb(46, 50, 80);
+    --text-secondary: #b3afaf;
+    
+    --secondary-light: rgb(248, 114, 148);
+    --secondary-normal: rgb(237, 96, 132);
+    --secondary-dark: rgb(230, 66, 86);
+
+    --primary-light: rgb(233, 241, 254);
+    --primary-normal: rgb(201, 200, 247);
+    --primary-normal: rgb(209, 215, 246);
+    --primary-dark: rgb(172, 152, 243);
+
+    --background: white;
+    --shadow: rgb(245, 246, 247);
+    // --shadow: rgb(242, 242, 243);
+    --info: rgb(215, 245, 255);
+    --success: rgb(168, 203, 56);
+    --danger: rgb(255, 222, 240);
+    --warning: rgb(255, 239, 165);
+    --warning-dark: rgb(248, 180, 100);
+}
+
+// https://cdn.dribbble.com/users/4189231/screenshots/14803442/media/0eaa1b6816d1a87bf51c1b9836161aad.png?compress=1&resize=1200x900&vertical=top
+
