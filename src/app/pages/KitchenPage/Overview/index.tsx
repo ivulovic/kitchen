@@ -19,12 +19,12 @@ export function Overview(props: IOverviewProps) {
   const { storeId } = useParams<IOverviewParams>();
   const products = useSelector(selectProducts);
   const handleItemAdd = (itemId: string) => {
-    const payload = {
-      itemId: itemId,
-      userId: user.username,
-      date: new Date().getTime(),
-    };
-    sendNotification(payload);
+    // const payload = {
+    //   itemId: itemId,
+    //   userId: user.username,
+    //   date: new Date().getTime(),
+    // };
+    // sendNotification(payload);
   };
   React.useEffect(() => {
     dispatch(kitchenActions.loadProducts({ storeId }));

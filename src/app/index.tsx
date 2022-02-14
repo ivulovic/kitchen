@@ -8,9 +8,15 @@ import SidePanelLayout from 'app/components/Layouts/SidePanelLayout';
 import { KitchenPage } from './pages/KitchenPage';
 import { Routes } from './constants/routes';
 import AuthProvider from './providers/AuthProvider';
+import { useSelector } from 'react-redux';
+import { selectUser } from './providers/AuthProvider/selectors';
+import AuthPage from './pages/AuthPage';
+import { useAuthProviderSlice } from './providers/AuthProvider/slice';
 
 export function App() {
+  useAuthProviderSlice();
   const { i18n } = useTranslation();
+  const user = useSelector(selectUser);
   return (
     <BrowserRouter>
       <Helmet
@@ -19,15 +25,23 @@ export function App() {
         htmlAttributes={{ lang: i18n.language }}
       ></Helmet>
 
-      <AuthProvider>
-        <SidePanelLayout>
-          <Switch>
-            <Route exact path={Routes.Home} component={KitchenPage} />
-            <Route path={Routes.Kitchen} component={KitchenPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </SidePanelLayout>
-      </AuthProvider>
+      <AuthProvider />
+
+      {user ? (
+        <>
+          <SidePanelLayout>
+            <Switch>
+              <Route exact path={Routes.Home} component={KitchenPage} />
+              <Route path={Routes.Kitchen} component={KitchenPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </SidePanelLayout>
+        </>
+      ) : (
+        <Switch>
+          <Route component={AuthPage} />
+        </Switch>
+      )}
     </BrowserRouter>
   );
 }

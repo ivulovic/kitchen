@@ -3,7 +3,6 @@ import { IAuthProviderState } from './types';
 export const AuthProviderScope = 'auth';
 
 const getFakeData = (): Array<string> => {
-
   let username = localStorage.getItem('username');
   let firstName = localStorage.getItem('firstName');
   let lastName = localStorage.getItem('lastName');
@@ -32,9 +31,12 @@ const getFakeData = (): Array<string> => {
 const [username, firstName, lastName] = getFakeData();
 
 export const initialState: IAuthProviderState = {
-  user: {
-    username,
-    firstName,
-    lastName,
-  },
+  initializedAuth: false,
+  isAuthenticated: false,
+  user: null,
+  // user: {
+  //   username,
+  //   firstName,
+  //   lastName,
+  // },
 };

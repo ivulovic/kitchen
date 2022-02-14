@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: 350px auto;    
     .panel {
-        padding: 1rem;
-        background-color: var(--primary-light);
+        // padding: 1rem;
+        // background-color: var(--primary-light);
+        position: relative;
     }
 
     .content {

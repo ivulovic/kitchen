@@ -7,3 +7,8 @@ export const selectUser = createSelector(
   [(state: RootState) => state[AuthProviderScope] || initialState],
   state => state.user,
 );
+
+export const selectIsAuthenticated = createSelector(
+  [(state: RootState) => state[AuthProviderScope] || initialState],
+  state => state.isAuthenticated,
+);

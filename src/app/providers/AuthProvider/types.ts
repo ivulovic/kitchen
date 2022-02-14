@@ -1,11 +1,7 @@
-import { ReactElement } from 'react';
-
-export interface IAuthProviderProps {
-  children: ReactElement;
-}
-
 export interface IAuthProviderState {
-  user: IAuthUser;
+  user: IAuthUser | null;
+  initializedAuth: boolean;
+  isAuthenticated: boolean;
 }
 
 export interface IAuthUser {

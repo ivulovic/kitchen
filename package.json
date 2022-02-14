@@ -106,7 +106,8 @@
     "sanitize.css": "13.0.0",
     "sass": "1.49.7",
     "styled-components": "5.3.3",
-    "web-vitals": "2.1.2"
+    "web-vitals": "2.1.2",
+    "universal-cookie": "4.0.4"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",

@@ -5,7 +5,7 @@
  * @param {string} endpoint - A string that needs to be concated with API address
  * @returns {string} The prepared URL for request
  */
- export function makeApiUrl(endpoint) {
+export function makeApiUrl(endpoint) {
   return endpoint;
 }
 
@@ -18,8 +18,8 @@ function makeGenericReq(method, body = null) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjIwODMzMWFiNzlkNDMzMWFmYTI1NmE5IiwiaWF0IjoxNjQ0ODI1Njg3LCJleHAiOjE2NDQ4NTQ0ODd9.V8rdS2PNhuN0a3qb75OfCRRqQvsVRpIMR-15Uogq72E',
+      // Authorization:
+      //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjIwODMzMWFiNzlkNDMzMWFmYTI1NmE5IiwiaWF0IjoxNjQ0ODI1Njg3LCJleHAiOjE2NDQ4NTQ0ODd9.V8rdS2PNhuN0a3qb75OfCRRqQvsVRpIMR-15Uogq72E',
     },
   };
 }
