@@ -39,7 +39,6 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
     );
   };
   const groupedData = React.useMemo(() => {
-    console.log('changed', props.data);
     const obj = {};
     const deliveredData = props.data.filter(x => {
       if (x.isDelivered) {
@@ -61,8 +60,11 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
         confirmationPersons: deliveredData.map(x => x.createdBy),
       };
     });
-    if (storeId && obj[storeId]) {
-      return [obj[storeId]] as Array<IGroupedDelivery>;
+    if (storeId) {
+      if (obj[storeId]) {
+        return [obj[storeId]] as Array<IGroupedDelivery>;
+      }
+      return [];
     }
     return Object.values(obj) as Array<IGroupedDelivery>;
   }, [props.data]);
@@ -78,13 +80,13 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
           x => x.firstName + ' ' + x.lastName,
         );
         return (
-          <div className="store-delivery">
+          <div key={x.store._id} className="store-delivery">
             <div>
               <strong>{deliveryPersons.join(', ')}</strong> applied to do
               delivery from the <strong>{x.store.name}</strong> store.
             </div>
             {x.people.map(y => (
-              <div className="people-messages">
+              <div key={y._id} className="people-messages">
                 {y.description && (
                   <p>
                     <strong>
@@ -96,7 +98,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
               </div>
             ))}
             {x.people.map(y => (
-              <div className="people-messages">
+              <div key={y._id} className="people-messages">
                 {y.isDelivered && (
                   <p>
                     <strong>
@@ -111,7 +113,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
         );
       })}
       {storeId && (
-        <>
+        <div className="footer">
           {delivery ? (
             <>
               <button className="flat-button active" onClick={toggle}>
@@ -125,9 +127,12 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
               </button>
             </>
           ) : (
-            <button className="flat-button active" onClick={toggle}>
-              Apply for Delivery
-            </button>
+            <>
+              <div>No one applied to deliver food from this store.</div>
+              <button className="flat-button active" onClick={toggle}>
+                Apply for Delivery
+              </button>
+            </>
           )}
           {!delivery && (
             <Modal
@@ -154,7 +159,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
               />
             </Modal>
           )}
-        </>
+        </div>
       )}
     </div>
   );

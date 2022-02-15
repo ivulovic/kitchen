@@ -53,7 +53,7 @@ export function GroupedOrderItem(props: IGroupedOrderItemProps) {
             ) => {
               const isCreator = user.email === email;
               return (
-                <>
+                <div key={email + '_' + i}>
                   <div className="row body">
                     <div>
                       {firstName} {lastName}
@@ -114,7 +114,7 @@ export function GroupedOrderItem(props: IGroupedOrderItemProps) {
                       </div>
                     </>
                   )}
-                </>
+                </div>
               );
             },
           )}

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ISidePanelLinkProps } from './types';
 
 export function SidePanelLink(props: ISidePanelLinkProps) {
+  const Icon = props.icon || React.Fragment;
   return (
     <NavLink
       to={props.link}
@@ -10,7 +11,10 @@ export function SidePanelLink(props: ISidePanelLinkProps) {
       activeClassName="active"
       className="side-panel-link"
     >
-      {props.label}
+      <span className={`${props.icon ? 'icon' : ''}`}>
+        <Icon width={24} height={24} />
+      </span>
+      <span className="text">{props.label}</span>
     </NavLink>
   );
 }

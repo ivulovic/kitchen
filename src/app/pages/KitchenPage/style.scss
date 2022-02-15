@@ -15,6 +15,11 @@
             display: grid;
             gap: 1rem;
         }
+        .footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
     .orders,
     .products{

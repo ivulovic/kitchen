@@ -53,6 +53,7 @@ export function Orders(props: INotificationsProps) {
   };
   return (
     <div className="orders">
+      {!props.data?.length && <div>No orders for today yet.</div>}
       {/* {props.data.map((item: IOrder) => (
         <OrderItem key={item._id} {...item} />
       ))} */}
