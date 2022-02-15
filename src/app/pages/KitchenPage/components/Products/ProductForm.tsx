@@ -91,12 +91,14 @@ export function ProductForm(props: IProductFormProps) {
           />
         </div>
       </div>
-      <button className={`flat-button active`} onClick={handleSubmit}>
-        Add
-      </button>
-      <button className={`flat-button danger`} onClick={props.onCancel}>
-        Cancel
-      </button>
+      <div className="form-controls">
+        <button className={`flat-button active`} onClick={handleSubmit}>
+          Create Order
+        </button>
+        <button className={`flat-button danger`} onClick={props.onCancel}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

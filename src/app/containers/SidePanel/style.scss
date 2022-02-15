@@ -1,12 +1,16 @@
 .side-panel{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     height: 100%;
     position: fixed;
     width: 250px;
     border-right: 1px solid var(--primary-light);
+    & > .side-panel-link:first-child{
+        border-top: 1px solid var(--shadow);
+    }
     .side-panel-link{
-        padding: 1rem;
+        padding: 1rem 1rem;
         color: var(--text-primary);
         text-decoration: none;
         background-color: white;
@@ -17,18 +21,15 @@
         align-items: center;
         border-bottom: 1px solid var(--primary-light);
         &.active{
-            background-color: var(--primary-dark);
+            background-color: var(--shadow);
             svg{
                 color: var(--text-primary);
             }
-            .text{
-                color: white;
-            }
         }
         &:not(.active) .icon{
-            background-color: var(--primary-dark);
+            background-color: var(--shadow);
             svg{
-                color: white;
+                color: var(--text-primary);
             }
         }
         .icon{

@@ -8,11 +8,16 @@ const initialState = {
 
 export default function DeliveryForm(props: IDeliveryFormProps) {
   const [form, setForm] = useState(props.model || initialState);
+  const [error, setError] = useState(false);
   const handleSubmit = () => {
-    props.onSubmit({
-      isDelivered: form.isDelivered,
-      description: form.description,
-    });
+    if (!form.description) {
+      setError(true);
+    } else {
+      props.onSubmit({
+        isDelivered: form.isDelivered,
+        description: form.description,
+      });
+    }
   };
   const cId = 'isDeliveredCheckbox';
   return (
@@ -29,13 +34,13 @@ export default function DeliveryForm(props: IDeliveryFormProps) {
                 setForm({ ...form, isDelivered: e.target.checked })
               }
             />
-            <span>Mark as delivered - Food is at the table</span>
+            <span>Mark as delivered</span>
           </label>
         </div>
       )}
 
       <div>
-        <span>Message: </span>
+        <span className={`${error ? 'error' : ''}`}>* Message: </span>
         <div className="input">
           <input
             type={'text'}
@@ -45,12 +50,14 @@ export default function DeliveryForm(props: IDeliveryFormProps) {
           />
         </div>
       </div>
-      <button className={`flat-button active`} onClick={handleSubmit}>
-        {props.model ? 'Update' : 'Add'}
-      </button>
-      <button className={`flat-button danger`} onClick={props.onCancel}>
-        Cancel
-      </button>
+      <div className="form-controls">
+        <button className={`flat-button active`} onClick={handleSubmit}>
+          {props.model ? 'Update' : 'Add'}
+        </button>
+        <button className={`flat-button danger`} onClick={props.onCancel}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

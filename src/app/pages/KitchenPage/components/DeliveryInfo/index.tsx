@@ -85,30 +85,38 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
               <strong>{deliveryPersons.join(', ')}</strong> applied to do
               delivery from the <strong>{x.store.name}</strong> store.
             </div>
-            {x.people.map(y => (
-              <div key={y._id} className="people-messages">
-                {y.description && (
-                  <p>
-                    <strong>
-                      {y.firstName} {y.lastName}:{' '}
-                    </strong>
-                    <i>{y.description}</i>
-                  </p>
-                )}
+            <div className="store-messages">
+              <div>
+                <strong>Messages:</strong>
+                {x.people.map(y => (
+                  <div key={y._id} className="people-messages">
+                    {y.description && (
+                      <p>
+                        <strong>
+                          {y.firstName} {y.lastName}
+                        </strong>
+                        : {y.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-            {x.people.map(y => (
-              <div key={y._id} className="people-messages">
-                {y.isDelivered && (
-                  <p>
-                    <strong>
-                      {y.firstName} {y.lastName}
-                    </strong>{' '}
-                    marked delivery as <strong>Done</strong>
-                  </p>
-                )}
+              <div>
+                <strong>Delivery:</strong>
+                {x.people.map(y => (
+                  <div key={y._id} className="people-messages">
+                    {y.isDelivered && (
+                      <p>
+                        <strong>
+                          {y.firstName} {y.lastName}
+                        </strong>{' '}
+                        marked delivery as <strong>Done</strong>
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         );
       })}
@@ -117,7 +125,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
           {delivery ? (
             <>
               <button className="flat-button active" onClick={toggle}>
-                Update Delivery Status
+                Update Delivery
               </button>
               <button
                 className="flat-button danger"
@@ -128,9 +136,9 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
             </>
           ) : (
             <>
-              <div>No one applied to deliver food from this store.</div>
+              <div>Become a delivery person by clicking "Apply" button.</div>
               <button className="flat-button active" onClick={toggle}>
-                Apply for Delivery
+                Apply
               </button>
             </>
           )}

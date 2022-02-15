@@ -10,14 +10,14 @@ import { ProductForm } from './ProductForm';
 export function ProductControls(props: IProduct) {
   const { toggle, visible } = useModal();
   const dispatch = useDispatch();
-//   const [mode, setMode] = React.useState(ActionMode.Create);
+  //   const [mode, setMode] = React.useState(ActionMode.Create);
   const handleSubmit = (values: ICreateOrderAction) => {
     toggle();
     dispatch(kitchenActions.createOrder(values));
-  }
+  };
   return (
     <div className="product-controls">
-      <button className={`flat-button`} onClick={toggle}>
+      <button className={`flat-button active`} onClick={toggle}>
         Create Order
       </button>
       <Modal visible={visible} toggle={toggle} title={`Order ${props.name}`}>
