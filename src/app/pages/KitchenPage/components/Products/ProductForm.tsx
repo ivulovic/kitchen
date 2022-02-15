@@ -4,7 +4,7 @@ import { kitchenActions } from '../../slice';
 import { IProductFormProps } from '../../types';
 
 const initialFormState = {
-  delivery: false,
+  delivery: true,
   fullPortions: '0',
   halfPortions: '0',
   description: '',
@@ -38,7 +38,12 @@ export function ProductForm(props: IProductFormProps) {
       <div>
         <span>Delivery</span>
         <label htmlFor={cId} className="checkbox">
-          <input type="checkbox" id={cId} defaultChecked={form.delivery} />
+          <input
+            type="checkbox"
+            id={cId}
+            defaultChecked={form.delivery}
+            onChange={e => setForm({ ...form, delivery: e.target.checked })}
+          />
           <span>I want food to be delivered to my address</span>
         </label>
       </div>

@@ -10,6 +10,7 @@ export function OrderItem(props: IOrderItemProps) {
   const modifiedString = `${formatDate(props.modifiedAt)} at ${formatTime(
     props.modifiedAt,
   )}`;
+  const [fullPortions, halfPortions] = props.quantity.split('_');
   return (
     <div className="order-item">
       <div className="order-item-header">
@@ -17,6 +18,14 @@ export function OrderItem(props: IOrderItemProps) {
           {props.createdBy.firstName} {props.createdBy.lastName} added{' '}
           {props.productId.name}
         </h3>
+        <div className="grid-2">
+          <h4>Delivery: {props.delivery ? 'Yes' : 'No'}</h4>
+          <h4>
+            Quantity:{' '}
+            {fullPortions !== '0' && `Full portions: ${fullPortions} `}
+            {halfPortions !== '0' && `Half portions: ${halfPortions}`}
+          </h4>
+        </div>
         <p className="datetime-info">
           <span>Created: {createdString}</span>
           {createdString === modifiedString ? null : (

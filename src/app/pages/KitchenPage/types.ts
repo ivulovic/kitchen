@@ -17,6 +17,10 @@ export interface INotificationsProps {
   data: Array<IOrderItemProps>;
 }
 
+export interface IDeliveryInfoProps {
+  data: Array<IDelivery>;
+}
+
 export interface IMenuItemProps extends IProduct {
   onAdd(itemId: string): void;
 }
@@ -26,6 +30,7 @@ export interface IOrderItemProps extends IOrder {}
 export interface IKitchenState {
   orders: Array<IOrder>;
   products: Array<IProduct>;
+  delivery: Array<IDelivery>;
 }
 export interface IUser {
   firstName: string;
@@ -52,6 +57,7 @@ export interface IOrder {
   createdAt: number;
   createdBy: IUser;
   delivery: boolean;
+  quantity: string;
   status: string;
   description: string;
   modifiedAt: number;
@@ -72,7 +78,7 @@ export interface IKitchenWorkerContextValue {
 
 export interface ILoadProductsAction {
   storeId: string;
-};
+}
 
 export interface IProductInfoProps extends IProduct {
   scope: string;
@@ -89,4 +95,77 @@ export interface ICreateOrderAction {
   delivery: boolean;
   quantity: string;
   description: string;
+}
+
+export interface GroupedOrderPerson extends IUser {
+  delivery: boolean;
+  orderDescription: string;
+  fullPortions: string;
+  halfPortions: string;
+  orderStatus: string;
+  orderId: string;
+}
+export interface IGroupedOrder {
+  product: IGroupedProduct;
+  people: Array<GroupedOrderPerson>;
+}
+
+export interface IGroupedOrder {
+  product: IGroupedProduct;
+  people: Array<GroupedOrderPerson>;
+}
+
+export interface IGroupedProduct extends IProduct {
+  totalFullPortions: number;
+  totalHalfPortions: number;
+  totalFullPortionsWithDelivery: number;
+  totalHalfPortionsWithDelivery: number;
+}
+export interface IGroupedOrderItemProps {
+  order: IGroupedOrder;
+  user: IUser;
+  onRemoveOrder(orderId: string): void;
+}
+
+export interface IRemoveOrderAction {
+  orderId: string;
+}
+
+export interface IDelivery {
+  _id: string;
+  storeId: IStore;
+  description: string;
+  createdBy: IUser;
+  isDelivered: boolean;
+}
+
+export interface ILoadedDeliveryInfo {}
+
+export interface IGroupedDeliveryPerson extends IUser {
+  description: string;
+  isDelivered: boolean;
+  deliveryId: string;
+}
+
+export interface IGroupedDelivery {
+  store: IStore;
+  people: Array<IGroupedDeliveryPerson>;
+  confirmationPersons: Array<IUser>;
+}
+
+export interface IDeliveryCreateAction {
+  isDelivered: boolean;
+  description: string;
+  storeId: string;
+  deliveryId?: string;
+}
+
+export interface IDeliveryCancelAction {
+  deliveryId: string;
+}
+
+export interface IDeliveryFormProps {
+  model?: Omit<IDeliveryCreateAction, 'storeId'>;
+  onCancel(): void;
+  onSubmit(v: Omit<IDeliveryCreateAction, 'storeId'>): void;
 }

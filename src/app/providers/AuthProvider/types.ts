@@ -1,11 +1,7 @@
+import { IUser } from 'app/pages/KitchenPage/types';
+
 export interface IAuthProviderState {
-  user: IAuthUser | null;
+  user: IUser | null;
   initializedAuth: boolean;
   isAuthenticated: boolean;
-}
-
-export interface IAuthUser {
-  username: string;
-  firstName: string;
-  lastName: string;
 }
