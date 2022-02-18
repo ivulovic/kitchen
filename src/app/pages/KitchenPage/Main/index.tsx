@@ -24,7 +24,7 @@ export function Main() {
         {/* <meta name="description" content="A Boilerplate application homepage" /> */}
       </Helmet>
       <Header title={t('kitchenMainTitle')} />
-      <DeliveryInfo data={delivery} />
+      {delivery?.length ? <DeliveryInfo data={delivery} /> : null}
       <Orders data={orders} />
     </>
   );

@@ -45,13 +45,16 @@ export default function DeliveryForm(props: IDeliveryFormProps) {
           <textarea
             defaultValue={form.description}
             onChange={e => setForm({ ...form, description: e.target.value })}
-            placeholder="Add approximate time you are going to deliver food"
+            placeholder="Provide info about daily menu, time you are going to pickup food or any other usefull info. This message will be publicly visible to others."
           />
         </div>
       </div>
       <div className="form-controls">
-        <button className={`flat-button active`} onClick={handleSubmit}>
-          {props.model ? 'Update' : 'Add'}
+        <button
+          className={`flat-button ${props.model ? 'info' : 'active'}`}
+          onClick={handleSubmit}
+        >
+          {props.model ? 'Update' : 'Apply'}
         </button>
         <button className={`flat-button danger`} onClick={props.onCancel}>
           Cancel

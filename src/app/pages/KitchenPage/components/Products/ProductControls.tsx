@@ -18,7 +18,7 @@ export function ProductControls(props: IProduct) {
   return (
     <div className="product-controls">
       <button className={`flat-button active`} onClick={toggle}>
-        Create Order
+        Order
       </button>
       <Modal visible={visible} toggle={toggle} title={`Order ${props.name}`}>
         <ProductForm {...props} onSubmit={handleSubmit} onCancel={toggle} />

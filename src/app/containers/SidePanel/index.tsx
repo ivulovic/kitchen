@@ -41,7 +41,7 @@ export function SidePanel() {
           link={`${Routes.Kitchen}/${store._id}`}
         />
       ))}
-      <SidePanelLink
+      {/* <SidePanelLink
         icon={OrderHistoryIcon}
         link={Routes.OrderHistory}
         exact
@@ -58,7 +58,7 @@ export function SidePanel() {
         link={Routes.Settings}
         exact
         label={t('settings')}
-      />
+      /> */}
     </div>
   );
 }

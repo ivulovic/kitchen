@@ -125,8 +125,8 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
         <div className="footer">
           {delivery ? (
             <>
-              <button className="flat-button active" onClick={toggle}>
-                Update Delivery
+              <button className="flat-button info" onClick={toggle}>
+                Update
               </button>
               <button
                 className="flat-button danger"

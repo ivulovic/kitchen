@@ -189,7 +189,7 @@
 .kitchen,
 #app-portals{
     .flat-button{
-        padding: 0.5rem 0.4rem;
+        padding: 0.4rem 0.4rem;
         cursor: pointer;
         border: none;
         font-weight: 600;
@@ -198,14 +198,18 @@
         font-size: 0.70rem;
         background-color: white;
         color: var(--text-primary);
-        min-width: 80px;
-        transition: 0.3s ease;
+        min-width: 60px;
+        // transition: 0.3s ease;
         border: 1px solid var(--shadow);
         background-color: var(--shadow);
         &:hover{
             background: var(--primary-dark);
         }
         &.active{
+            background-color: var(--positive);
+            color: white;
+        }
+        &.info{
             background-color: var(--primary-dark);
             color: white;
         }

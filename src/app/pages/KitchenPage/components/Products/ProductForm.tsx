@@ -93,7 +93,7 @@ export function ProductForm(props: IProductFormProps) {
       </div>
       <div className="form-controls">
         <button className={`flat-button active`} onClick={handleSubmit}>
-          Create Order
+          Order
         </button>
         <button className={`flat-button danger`} onClick={props.onCancel}>
           Cancel
