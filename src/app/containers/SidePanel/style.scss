@@ -5,7 +5,7 @@
     height: 100%;
     position: fixed;
     width: 250px;
-    border-right: 1px solid var(--primary-light);
+    border-right: 1px solid var(--shadow);
     & > .side-panel-link:first-child{
         border-top: 1px solid var(--shadow);
     }
@@ -19,7 +19,7 @@
         display: grid;
         grid-template-columns: 48px auto;
         align-items: center;
-        border-bottom: 1px solid var(--primary-light);
+        border-bottom: 1px solid var(--shadow);
         &.active{
             background-color: var(--shadow);
             svg{

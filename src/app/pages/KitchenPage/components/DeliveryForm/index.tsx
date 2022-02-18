@@ -42,8 +42,7 @@ export default function DeliveryForm(props: IDeliveryFormProps) {
       <div>
         <span className={`${error ? 'error' : ''}`}>* Message: </span>
         <div className="input">
-          <input
-            type={'text'}
+          <textarea
             defaultValue={form.description}
             onChange={e => setForm({ ...form, description: e.target.value })}
             placeholder="Add approximate time you are going to deliver food"

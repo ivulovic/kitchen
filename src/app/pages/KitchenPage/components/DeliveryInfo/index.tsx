@@ -86,7 +86,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
               delivery from the <strong>{x.store.name}</strong> store.
             </div>
             <div className="store-messages">
-              <div>
+              <div className="prewrapped-messages">
                 <strong>Messages:</strong>
                 {x.people.map(y => (
                   <div key={y._id} className="people-messages">
@@ -95,7 +95,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
                         <strong>
                           {y.firstName} {y.lastName}
                         </strong>
-                        : {y.description}
+                        {y.description}
                       </p>
                     )}
                   </div>

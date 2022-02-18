@@ -19,8 +19,16 @@
                 padding-top: 0.5rem;
                 padding-bottom: 0.5rem;
                 & > div{
-                    display: grid;
+                    // display: grid;
+                    display: flex;
+                    flex-direction: column;
                     gap: 0.5rem;
+                }
+                .prewrapped-messages{
+                    strong{
+                        display: block;
+                    }
+                    white-space: pre-wrap;
                 }
             }
         }
@@ -150,10 +158,6 @@
         .order-item {
             padding: 1rem 1rem 1rem 1rem;
             background: var(--shadow);
-            // border-bottom: 5px solid var(--shadow);
-            &.viewed {
-                background-color: var(--primary-light);
-            }
             .grid-2{
                 display: grid;
                 grid-template-columns: 150px 300px;
@@ -268,6 +272,14 @@
                 padding: 0.5rem;
                 width: 100%;
             }
+        }
+        textarea {
+            font-family: inherit;
+            border: 1px solid var(--shadow);
+            padding: 0.5rem;
+            line-height: 1.4rem;
+            height: 200px;
+            min-height: 200px;
         }
     }
 }
