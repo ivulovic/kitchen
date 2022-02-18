@@ -11,7 +11,6 @@ import { createInjectorsEnhancer } from 'redux-injectors';
 import createSagaMiddleware from 'redux-saga';
 
 import { createReducer } from './reducers';
-import SocketController from 'app/socket/SocketController';
 
 export function configureAppStore() {
   const reduxSagaMonitorOptions = {};
@@ -30,12 +29,17 @@ export function configureAppStore() {
 
   const store = configureStore({
     reducer: createReducer(),
-    middleware: [...getDefaultMiddleware(), ...middlewares],
+    middleware: [
+      ...getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActionPaths: ['meta.broadcastAction'],
+        },
+      }),
+      ...middlewares,
+    ],
     devTools: process.env.NODE_ENV !== 'production',
     enhancers,
   });
-
-  // new SocketController(store.dispatch);
 
   return store;
 }

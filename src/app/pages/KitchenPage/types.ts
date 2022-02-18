@@ -73,7 +73,7 @@ export interface IKitchenWorkerProviderProps {
 }
 
 export interface IKitchenWorkerContextValue {
-  sendNotification(e: any): void;
+  broadcastAction(e: any): void;
 }
 
 export interface ILoadProductsAction {

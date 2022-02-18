@@ -2,7 +2,7 @@ import Modal from 'app/components/Modal';
 import useModal from 'app/components/Modal/useModal';
 import { selectUser } from 'app/providers/AuthProvider/selectors';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { kitchenActions } from '../../slice';
 import {
@@ -11,18 +11,19 @@ import {
   IGroupedDelivery,
   IOverviewParams,
 } from '../../types';
+import useKitchenDispatch from '../../utils/useKitchenDispatch';
 import DeliveryForm from '../DeliveryForm';
 
 export function DeliveryInfo(props: IDeliveryInfoProps) {
   const { toggle, visible } = useModal();
   const { storeId } = useParams<IOverviewParams>();
+  const kitchenDispatch = useKitchenDispatch();
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   const handleSubmit = (value: Omit<IDeliveryCreateAction, 'storeId'>) => {
     const action = delivery
       ? kitchenActions.updateDelivery
       : kitchenActions.createDelivery;
-    dispatch(
+    kitchenDispatch(
       action({
         ...value,
         storeId,
@@ -32,7 +33,7 @@ export function DeliveryInfo(props: IDeliveryInfoProps) {
     toggle();
   };
   const handleCancelDelivery = () => {
-    dispatch(
+    kitchenDispatch(
       kitchenActions.cancelDelivery({
         deliveryId: currentDelivery?.deliveryId,
       }),

@@ -1,5 +1,3 @@
-import { kitchenActions } from 'app/pages/KitchenPage/slice';
-import { OrderAdded } from 'app/socket/constants';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +5,7 @@ export default function useKitchenWorker() {
   const [worker, setWorker] = useState<SharedWorker>();
   const dispatch = useDispatch();
 
-  const hanldeStartConnection = () => {
+  const handleStartConnection = () => {
     // Send the message to the worker [postMessage]
     worker?.port.postMessage({
       connectionStatus: 'init',
@@ -20,21 +18,17 @@ export default function useKitchenWorker() {
     });
   };
 
-  const sendNotification = e => {
-    const payload = { type: OrderAdded, payload: e };
-    addOrder(e);
-    // send http request
-    // ...
-    // send to worker
-    worker?.port.postMessage(payload);
+  const broadcastAction = e => {
+    worker?.port.postMessage(e);
+    // workers sends to websocket
+    // ws sends to all client's except the ones who initiated request
+    // data gets dispatched in redux on other clients (worker.port.onMessage)
   };
-
-  const addOrder = data => dispatch(kitchenActions.addOrder(data));
 
   useEffect(() => {
     const myWorker = new SharedWorker(
       new URL('./kitchen.worker.js', import.meta.url),
-    ); //NEW SYNTAX
+    );
     setWorker(myWorker);
 
     return () => {
@@ -44,20 +38,18 @@ export default function useKitchenWorker() {
 
   useEffect(() => {
     if (worker) {
-      hanldeStartConnection();
+      handleStartConnection();
       worker.port.onmessage = function (e) {
-        console.log('[HOOK]', e.data);
+        // console.log('[HOOK]', e.data);
         if (e.data.includes('type')) {
           const data = JSON.parse(e.data);
-          switch (data.type) {
-            case OrderAdded:
-              addOrder(data.message);
-              break;
+          if (data.type) {
+            dispatch(data);
           }
         }
       };
     }
   }, [worker]);
 
-  return [sendNotification];
+  return [broadcastAction];
 }

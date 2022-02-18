@@ -37,7 +37,9 @@ export function* createOrder(action) {
       requestURL,
       makePostReq(action.payload) as any,
     );
-    yield put(kitchenActions.createdOrder(data));
+    const preparedAction = kitchenActions.createdOrder(data);
+    yield put(preparedAction);
+    action.meta.broadcastAction(preparedAction);
   } catch (err) {
     console.log('Error occured', err);
   }
@@ -50,7 +52,9 @@ export function* createDelivery(action) {
       requestURL,
       makePostReq(action.payload) as any,
     );
-    yield put(kitchenActions.createdDelivery(data));
+    const preparedAction = kitchenActions.createdDelivery(data);
+    yield put(preparedAction);
+    action.meta.broadcastAction(preparedAction);
   } catch (err) {
     console.log('Error occured', err);
   }
@@ -67,7 +71,9 @@ export function* updateDelivery(action) {
         isDelivered,
       }) as any,
     );
-    yield put(kitchenActions.updatedDelivery(data));
+    const preparedAction = kitchenActions.updatedDelivery(data);
+    yield put(preparedAction);
+    action.meta.broadcastAction(preparedAction);
   } catch (err) {
     console.log('Error occured', err);
   }
@@ -81,21 +87,22 @@ export function* removeOrder(action) {
       requestURL,
       makeDeleteReq(action.payload) as any,
     );
-    yield put(kitchenActions.removedOrder(action.payload));
+    const preparedAction = kitchenActions.removedOrder(action.payload);
+    yield put(preparedAction);
+    action.meta.broadcastAction(preparedAction);
   } catch (err) {
     console.log('Error occured', err);
   }
 }
 
 export function* cancelDelivery(action) {
+  console.log('cancel delivery', action);
   const requestURL = `/api/delivery/${action.payload.deliveryId}`;
   try {
-    const data = yield call(
-      request,
-      requestURL,
-      makeDeleteReq(action.payload) as any,
-    );
-    yield put(kitchenActions.canceledDelivery(action.payload));
+    yield call(request, requestURL, makeDeleteReq(action.payload) as any);
+    const preparedAction = kitchenActions.canceledDelivery(action.payload);
+    yield put(preparedAction);
+    action.meta.broadcastAction(preparedAction);
   } catch (err) {
     console.log('Error occured', err);
   }

@@ -17,12 +17,9 @@ const slice = createSlice({
   name: KitchenScope,
   initialState,
   reducers: {
-    addOrder(state, action: PayloadAction<IOrder>) {
-      state.orders = [...state.orders, action.payload];
-    },
     createOrder(state, action: PayloadAction<ICreateOrderAction>) {},
     createdOrder(state, action: PayloadAction<IOrder>) {
-      state.orders = [...state.orders, action.payload];
+      state.orders = [action.payload, ...state.orders];
     },
     createDelivery(state, action: PayloadAction<IDeliveryCreateAction>) {},
     createdDelivery(state, action: PayloadAction<IDelivery>) {

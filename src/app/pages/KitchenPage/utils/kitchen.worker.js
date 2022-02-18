@@ -1,25 +1,3 @@
-// const createSocketInstance = () => {
-//   const socket = new WebSocket('ws://localhost:8989');
-//   return socket;
-// }
-
-// const ports = [];
-// // eslint-disable-next-line no-restricted-globals
-// self.onconnect = function (e) {
-//   var port = e.ports[0];
-//   ports.push(port);
-
-//   port.onmessage = function (e) {
-
-//     // var workerResult = e.data;
-//     // SocketController.instance.send(payload(OrderAdded, workerResult));
-//     // console.log('on message in kitchen worker', e.data);
-//     // for (var i = 0; i < ports.length; i++) {
-//     //   ports[i].postMessage(workerResult);
-//     // }
-//   };
-// };
-
 const ports = [];
 
 // eslint-disable-next-line no-restricted-globals
@@ -38,8 +16,8 @@ self.onconnect = function (e) {
     if (socketInstance) {
       socketInstance.onopen = function (e) {
         console.log('[open] Connection established');
-        port.postMessage('[SOCKET] Connection established');
-        socketInstance.send(JSON.stringify({ socketStatus: true }));
+        // port.postMessage('[SOCKET] Connection established');
+        // socketInstance.send(JSON.stringify({ socketStatus: true }));
       };
 
       socketInstance.onmessage = function (event) {

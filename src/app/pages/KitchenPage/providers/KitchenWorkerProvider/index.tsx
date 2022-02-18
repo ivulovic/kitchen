@@ -1,4 +1,4 @@
-import useKitchenWorker from 'app/workers/kitchen/useKitchenWorker';
+import useKitchenWorker from 'app/pages/KitchenPage/utils/useKitchenWorker';
 import React from 'react';
 import { IKitchenWorkerProviderProps } from '../../types';
 import Context from './Context';
@@ -6,11 +6,11 @@ import Context from './Context';
 export default function KitchenWorkerProvider(
   props: IKitchenWorkerProviderProps,
 ) {
-  const [sendNotification] = useKitchenWorker();
+  const [broadcastAction] = useKitchenWorker();
   return (
     <Context.Provider
       value={{
-        sendNotification,
+        broadcastAction,
       }}
     >
       {props.children}

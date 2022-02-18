@@ -2,7 +2,7 @@ import React from 'react';
 import { IKitchenWorkerContextValue } from '../../types';
 
 const initialValue = {
-  sendNotification: (e: string) => null,
+  broadcastAction: (e: string) => null,
 };
 
 const Context = React.createContext<IKitchenWorkerContextValue>(initialValue);
